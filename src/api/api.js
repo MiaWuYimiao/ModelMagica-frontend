@@ -69,8 +69,39 @@ class ModelmagicaApi {
     return res.people;
   }
   
+  /** Get details on a person by fullname. */
 
-  /** add favorite artist(people) */
+  static async getPerson(fullname) {
+    let res = await this.request(`people/${fullname}`);
+    return res.person;
+  }
+
+  /** Add a new person */ 
+
+  static async addPerson(data) {
+    let res = await this.request("people", data, "post");
+    return res.person;
+  }
+
+  /** Upload a new image */
+  static async uploadImage(data) {
+    let res = await this.request("images", data, "post");
+    return res.image;
+  }
+
+  /** Add relation work_image */
+
+  static async addWorkImage(workId, imageId) {
+    await this.request(`works/${workId}/images/${imageId}`, {}, "post");
+  }
+
+  /** Add relation people_image */
+
+  static async addPeopleImage(fullname, imageId) {
+    await this.request(`people/${fullname}/images/${imageId}`, {}, "post");
+  }
+
+  /** Add favorite artist(people) */
 
   static async addFavorite(username, id) {
     await this.request(`users/${username}/people/${artist}`, {}, "post");
