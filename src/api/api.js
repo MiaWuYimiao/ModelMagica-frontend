@@ -43,8 +43,8 @@ class ModelmagicaApi {
 
   /** Get works (filtered by type if not undefined) */
 
-  static async getWorks(type) {
-    let res = await this.request("works", { type, client});
+  static async getWorks(data) {
+    let res = await this.request("works", data);
     return res.works;
   }
 
@@ -64,8 +64,8 @@ class ModelmagicaApi {
 
   /** Get people (filtered by searchTerm if not undefined) */
 
-  static async getPeople(term) {
-    let res = await this.request("people", { term });
+  static async getPeople(data) {
+    let res = await this.request("people", data);
     return res.people;
   }
   
@@ -103,7 +103,7 @@ class ModelmagicaApi {
 
   /** Add favorite artist(people) */
 
-  static async addFavorite(username, id) {
+  static async addFavorite(username, artist) {
     await this.request(`users/${username}/people/${artist}`, {}, "post");
   }
 

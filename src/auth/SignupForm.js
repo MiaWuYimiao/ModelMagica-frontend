@@ -1,131 +1,112 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
+import Alert from '../common/Alert.js'
 
-/** Signup form.
- *
- * Shows form and manages update to state on changes.
- * On submission:
- * - calls signup function prop
- * - redirects to /companies route
- *
- * Routes -> SignupForm -> Alert
- * Routed as /signup
- */
-
-function SignupForm({ signup }) {
-  const history = useHistory();
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
-  const [formErrors, setFormErrors] = useState([]);
-
-  console.debug(
-      "SignupForm",
-      "signup=", typeof signup,
-      "formData=", formData,
-      "formErrors=", formErrors,
-  );
-
-  /** Handle form submit:
-   *
-   * Calls login func prop and, if successful, redirect to /companies.
-   */
-
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    let result = await signup(formData);
-    if (result.success) {
-      history.push("/companies");
-    } else {
-      setFormErrors(result.errors);
+function SignupForm({signup}) {
+    const initialFormData ={
+        username:"",
+        password:"",
+        firstName:"",
+        lastName:"",
+        email:""
     }
-  }
+    const navigate = useNavigate();
 
-  /** Update form data field */
-  function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData(data => ({ ...data, [name]: value }));
-  }
+    const [ signupForm, setSignupForm ] = useState(initialFormData);
+    const [ formError, setFormError] = useState([]);
 
-  return (
-      <div className="SignupForm">
-        <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-          <h2 className="mb-3">Sign Up</h2>
-          <div className="card">
-            <div className="card-body">
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label>Username</label>
-                  <input
-                      name="username"
-                      className="form-control"
-                      value={formData.username}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Password</label>
-                  <input
-                      type="password"
-                      name="password"
-                      className="form-control"
-                      value={formData.password}
-                      onChange={handleChange}
-                  />
-                </div>
+    function handleChange(evt) {
+        evt.persist();
+        setSignupForm(f => ({ ...f, [evt.target.name]:evt.target.value }));
+    }
 
-                <div className="form-group">
-                  <label>First name</label>
-                  <input
-                      name="firstName"
-                      className="form-control"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Last name</label>
-                  <input
-                      name="lastName"
-                      className="form-control"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                      type="email"
-                      name="email"
-                      className="form-control"
-                      value={formData.email}
-                      onChange={handleChange}
-                  />
-                </div>
+    async function handleSubmit(evt) {
+        evt.preventDefault();
+        let result = await signup(signupForm);
+        console.log(result);
 
-                {formErrors.length
-                    ? <Alert type="danger" messages={formErrors} />
-                    : null
-                }
+        if(result.success){
+            navigate('/');
+        } else {
+            setFormError(result.err);
+        }
+    }
 
-                <button
-                    type="submit"
-                    className="btn btn-primary float-right"
-                    onSubmit={handleSubmit}
-                >
-                  Submit
-                </button>
-              </form>
+    const {username, password, firstName, lastName, email } = signupForm;
+    
+    return (
+        <div className="Signup-form">
+            <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                <h3 className="mb-3">Sign Up</h3>
+                <div className="card">
+                    <div className="card-body">
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="username" className="form-label">Username</label>
+                                <input 
+                                    id="username"
+                                    name="username" 
+                                    className="form-control" 
+                                    value={username}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">Password</label>
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    className="form-control" 
+                                    value={password} 
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="firstName" className="form-label">First name</label>
+                                <input 
+                                    id="firstName" 
+                                    name="firstName" 
+                                    className="form-control" 
+                                    value={firstName}
+                                    onChange={handleChange}
+                                 />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="lastName" className="form-label">Last name</label>
+                                <input 
+                                    id="lastName" 
+                                    name="lastName" 
+                                    className="form-control" 
+                                    value={lastName}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="email" className="form-label">Email</label>
+                                <input 
+                                    id="email"
+                                    type="email" 
+                                    name="email" 
+                                    className="form-control" 
+                                    value={email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {formError.length? 
+                                <Alert type="danger" messages={formError}/>
+                                : null
+                            }
+                            <div className="d-grid">
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-  );
+    )
 }
 
 export default SignupForm;
+

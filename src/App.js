@@ -1,24 +1,97 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { isExpired, decodeToken } from "react-jwt";
+import NavBar from './routes-nav/NavBar';
+import RoutesAll from './routes-nav/RoutesAll';
+import UserContext from './auth/UserContext';
+import SearchContext from './common/SearchContext';
+import useLocalStorage from './hooks/useLocalStorage';
+import ModelmagicaApi from "./api/api";
+import background from "./img/image.png";
+
+// Key name for storing token in localStorage for "remember me" re-login
+export const TOKEN_STORAGE_ID = "modelmagica-token";
 
 function App() {
+  const [infoLoaded, setInfoLoaded] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  const [favoriteArtists, setFavoriteArtists] = useState(new Set([]));
+
+  useEffect( () => {
+    async function getCurrentUser() {
+      if(token) {
+        try {
+          let decodedToken = decodeToken(token);
+          ModelmagicaApi.token = token;
+          let res = await ModelmagicaApi.getCurrentUser(decodedToken.username);
+          setCurrentUser(res);
+          return {success: true};
+        } catch(err) {
+          return {success:false, err};
+        }
+      }
+    }
+    getCurrentUser();
+  }, [token]);
+
+
+  function logout() {
+    setCurrentUser(null);
+    setToken(null);
+  }
+
+  async function login(loginForm) {
+    try {
+      const token = await ModelmagicaApi.login(loginForm);
+      setToken(token);
+      return {success: true};
+    } catch(err) {
+      console.log("login error:", err);
+      return {success:false, err};
+    }
+  }
+
+  async function signup(signupForm) {
+    try {
+      const token = await ModelmagicaApi.signup(signupForm);
+      setToken(token);
+      return {success: true};
+    } catch(err) {
+      console.log("signup error:", err);
+      return {success:false, err};
+    }
+  }
+
+  function hasAddFavorite(artist) {
+    return favoriteArtists.has(artist)
+  }
+
+  async function addFavorite(artist) {
+    try {
+      ModelmagicaApi.addFavorite(currentUser.username, artist);
+      setFavoriteArtists(oldArtists => (new Set([...oldArtists, artist])))
+      return {success: true};
+    } catch(err) {
+      return {success:false, err};
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite}}>
+      <SearchContext.Provider value={{searchResult, setSearchResult}}>
+        <div className="App">
+          <BrowserRouter>
+            <NavBar logout={logout}/>
+            <div className="pt-5 Route" style={{ backgroundImage: `url(${background})`}}>
+              <RoutesAll signup={signup} login={login}/>
+            </div>
+          </BrowserRouter >
+        </div>
+      </SearchContext.Provider>
+    </UserContext.Provider>
   );
 }
 

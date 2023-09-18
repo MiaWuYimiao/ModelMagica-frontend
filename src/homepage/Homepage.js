@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
 import "./Homepage.css";
+import ModelmagicaApi from "../api/api"
 import UserContext from "../auth/UserContext";
+import CardContainerRow from "./CardContainerRow";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 /** Homepage of site.
  *
- * Shows welcome message or login/register buttons.
+ * Shows people list and work list
  *
  * Routed at /
  *
@@ -16,27 +18,47 @@ function Homepage() {
   const { currentUser } = useContext(UserContext);
   console.debug("Homepage", "currentUser=", currentUser);
 
+  const [works, setWorks] = useState([]);
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+      async function getWorks() {
+          let works = await ModelmagicaApi.getWorks();
+          setWorks(works);
+      }
+      getWorks();
+  },[])
+
+  useEffect(() => {
+    async function getPeople() {
+        const data = {role: "Model"}
+        let people = await ModelmagicaApi.getPeople(data);
+        setPeople(people);
+    }
+    getPeople();
+},[])
+
+  if(!works || !people) {
+      return <LoadingSpinner />
+  }
+
   return (
       <div className="Homepage">
         <div className="container text-center">
-          <h1 className="mb-4 font-weight-bold">Jobly</h1>
-          <p className="lead">All the jobs in one, convenient place.</p>
-          {currentUser
-              ? <h2>
-                Welcome Back, {currentUser.firstName || currentUser.username}!
-              </h2>
-              : (
-                  <p>
-                    <Link className="btn btn-primary font-weight-bold mr-3"
-                          to="/login">
-                      Log in
-                    </Link>
-                    <Link className="btn btn-primary font-weight-bold"
-                          to="/signup">
-                      Sign up
-                    </Link>
-                  </p>
-              )}
+          <div>
+            <h2>Trending</h2>
+            {works.length?
+              <CardContainerRow items={{works}}/>
+              : <p className="lead">Sorry, no results were found!</p>
+            }
+          </div>
+          <div>
+            <h2>Models</h2>
+            {people.length?
+              <CardContainerRow items={{people}}/>
+              : <p className="lead">Sorry, no results were found!</p>
+            }
+          </div>
         </div>
       </div>
   );
