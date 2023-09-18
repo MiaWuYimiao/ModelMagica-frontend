@@ -26,10 +26,14 @@ function CardContainerRow({ items }) {
     }
 
     return (
-        <div className="CardContainerRow ">
-            <div className="row-body">
-               {category==="works"? workcards() : peoplecards()}
+        <div className="CardContainerRow sliderContainer">
+            <div className="slickPre rowPre slickNav"><i className="fas fa-arrow-left"></i></div>
+            <div className="row-slider">
+                <div className="sb-grid sb-grid--6">
+                    {category==="works"? workcards() : peoplecards()}
+                </div>
             </div>
+            <div className="slickNext rowNext slickNav"><i className="fas fa-arrow-right"></i></div>
         </div>
     )
 }

@@ -3,8 +3,10 @@ import { Routes, Route } from "react-router-dom";
 
 import Homepage from "../homepage/Homepage";
 import SearchResult from "../common/SearchResult";
+import WorkList from "../works/WorkList";
 import WorkDetail from "../works/WorkDetail";
 import UploadForm from "../works/UploadForm";
+import PeopleList from "../people/PeopleList";
 import PersonDetail from "../people/PersonDetail";
 import ProfileForm from "../users/ProfileForm";
 import FavoriteList from "../users/FavoriteList";
@@ -18,6 +20,12 @@ function RoutesAll({login, signup}) {
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/search/:type" element={
                 <SearchResult />} 
+            />
+            <Route exact path="/people" element={
+                <PeopleList />} 
+            />
+            <Route exact path="/works" element={
+                <WorkList />} 
             />
             <Route exact path="/works/:id" element={
                 <WorkDetail />}
