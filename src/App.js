@@ -28,6 +28,9 @@ function App() {
           ModelmagicaApi.token = token;
           let res = await ModelmagicaApi.getCurrentUser(decodedToken.username);
           setCurrentUser(res);
+          let resFav = await ModelmagicaApi.getFavorites(decodedToken.username);
+          console.log(resFav);
+          setFavoriteArtists(oldArtist => (new Set(resFav.map(o => (o.artist)))));
           return {success: true};
         } catch(err) {
           return {success:false, err};
@@ -41,6 +44,7 @@ function App() {
   function logout() {
     setCurrentUser(null);
     setToken(null);
+    setFavoriteArtists(new Set([]));
   }
 
   async function login(loginForm) {
@@ -66,6 +70,7 @@ function App() {
   }
 
   function hasAddFavorite(artist) {
+    console.log("favArtists", favoriteArtists);
     return favoriteArtists.has(artist)
   }
 
@@ -79,8 +84,18 @@ function App() {
     }
   }
 
+  async function deleteFavorite(artist) {
+    try {
+      ModelmagicaApi.deleteFavorite(currentUser.username, artist);
+      setFavoriteArtists(oldArtists => (new Set([...oldArtists]).delete(artist)));
+      return {success: true};
+    } catch(err) {
+      return {success:false, err};
+    }
+  }
+
   return (
-    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite}}>
+    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite, deleteFavorite}}>
       <SearchContext.Provider value={{searchResult, setSearchResult}}>
         <div className="App">
           <BrowserRouter>

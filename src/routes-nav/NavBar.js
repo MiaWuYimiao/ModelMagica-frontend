@@ -9,6 +9,7 @@ import './NavBar.css';
 function NavBar({logout}) {
     const { currentUser } = useContext(UserContext);
     const { setSearchResult } = useContext(SearchContext);
+    console.log(currentUser);
 
     const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ function NavBar({logout}) {
     function handleChange(evt) {
         evt.persist();
         setSearchTerm(evt.target.value);
+        
     }
 
     async function handleSearchClick() {
@@ -26,6 +28,7 @@ function NavBar({logout}) {
         let people = await ModelmagicaApi.getPeople(data);
         setSearchResult(people);
         navigate('/search/people');
+        console.log(searchTerm);
     }
 
     // Handle the search from the dropdown boxes
@@ -45,6 +48,11 @@ function NavBar({logout}) {
                 <li className="nav-item me-4">
                     <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
                 </li>
+                {currentUser.isAdmin?
+                    (<li className="nav-item me-4">
+                        <NavLink className="nav-link" exact to="/upload">Upload</NavLink>
+                    </li>) : null
+                }
                 <li className="nav-item me-4">
                     <NavLink className="nav-link" onClick={logout} exact to="/">Log out {currentUser.username}</NavLink>
                 </li>
@@ -72,7 +80,7 @@ function NavBar({logout}) {
                 <NavLink className="navbar-brand" exact to="/">ModelMagica</NavLink>
                 <ul class="navbar-nav ms-auto">
                     <li className="nav-item me-4">
-                        <InputGroup onSubmit={handleSearchClick} className="mb-3">
+                        <InputGroup className="mb-3">
                             <FormControl 
                                 placeholder="Search by name or role" 
                                 type="text"
@@ -80,7 +88,7 @@ function NavBar({logout}) {
                                 name="searchTerm"
                                 value={searchTerm}
                             />
-                            <Button variant="outline-secondary"><i className="fal fa-search"></i></Button>
+                            <Button onClick={handleSearchClick} variant="outline-secondary"><i className="fal fa-search"></i></Button>
                         </InputGroup>
                     </li>
                     <li className="nav-item me-4">

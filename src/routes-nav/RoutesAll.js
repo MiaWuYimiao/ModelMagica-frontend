@@ -34,7 +34,7 @@ function RoutesAll({login, signup}) {
                 <PersonDetail />}
             />
             <Route exact path="/favorites" element={
-                <FavoriteList />}
+                <PrivateRoute><FavoriteList /></PrivateRoute>}
             />
             <Route exact path="/upload" element={
                 <PrivateRoute><UploadForm /></PrivateRoute>} 

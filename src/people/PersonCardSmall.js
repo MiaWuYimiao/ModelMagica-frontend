@@ -1,6 +1,6 @@
 import React from "react";
 
-function PersonCardSmall() {
+function PersonCardSmall({person}) {
     return (
         <div>
             <h1>Person card small</h1>

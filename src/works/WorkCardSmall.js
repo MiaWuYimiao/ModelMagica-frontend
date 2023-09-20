@@ -1,6 +1,6 @@
 import React from "react";
 
-function WorkCardSmall() {
+function WorkCardSmall({work}) {
     return (
         <div>
             <h1>Word card small</h1>

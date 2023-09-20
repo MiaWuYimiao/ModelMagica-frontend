@@ -10,8 +10,8 @@ const right_arrow = "https://i.mdel.net/mdcdb/i/instafeed-r100.gif";
 function WorkDetail() {
     const { id } = useParams();
     const [work, setWork] = useState("");
-    // *  work is { id, title, client, type, source, publishTime, images, crew }
-    // *   where images is [{ id, url }, ...] and crew is [{fullname, role}, ...]
+    //   work is { id, title, client, type, source, publishTime, images, crew }
+    //   where images is [{ id, url }, ...] and crew is [{fullname, role}, ...]
 
     useEffect(() => {
         async function getWork() {

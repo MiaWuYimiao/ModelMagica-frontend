@@ -107,6 +107,19 @@ class ModelmagicaApi {
     await this.request(`users/${username}/people/${artist}`, {}, "post");
   }
 
+  /** Delete favorite artist(people) */
+
+  static async deleteFavorite(username, artist) {
+    await this.request(`users/${username}/people/${artist}`, {}, "delete");
+  }
+
+  /** Get all favorites */
+
+  static async getFavorites(username) {
+    let res = await this.request(`users/${username}/people`);
+    return res.favorites;
+  }
+
   /** Get token for login from username, password. */
 
   static async login(data) {

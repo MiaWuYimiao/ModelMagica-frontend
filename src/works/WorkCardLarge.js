@@ -4,16 +4,24 @@ import UserContext from "../auth/UserContext";
 import "./WorkCardLarge.css"
 
 function WorkCardLarge({work}) {
+    let myStyle={
+        backgroundImage: `url(${work.url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        height: "200px"
+    };
     return (
-        <Link className="WorkCardLarge card"  to={`/works/${work.id}`}>
-            <div className="card-body">
-                <div className="card-text">
+        <Link className="card small-12 medium-4 columns searchResultsImg"  to={`/works/${work.id}`}>
+            <div className="row itemcontainer">
+                <div className="imagecontainer">
+                    <div id={work.id} className="DivImgContainer" style={myStyle}></div>
+                </div>
+                <hr></hr>
+                <div className="">
                     <h6 className="card-title">{work.client} </h6>
                     <p className="card-subtitle">{work.title}</p>
                 </div>
-                <div className="card-img">
-                    <img src={work.url} alt={work.id}/>
-                </div>
+
             </div>
         </Link>
     )
