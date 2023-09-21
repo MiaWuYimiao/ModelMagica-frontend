@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ModelmagicaApi from "../api/api";
 import UserContext from "../auth/UserContext";
+import PersonCardSmall from "../people/PersonCardSmall";
 
 
 function FavoriteList() {
@@ -18,9 +19,22 @@ function FavoriteList() {
         getUserFavorites();
     }, []);
 
+    function handleClick(e) {
+        deleteFavorite(e.target.value);
+    }
+
     return (
         <div className="favList columns">
-            <h1>Favorite List page</h1>
+            <h1>Favorites</h1>
+            {
+                favoriteArtists.map((p,i) => (
+                <div className="favorite-card" key={i}>
+                    <PersonCardSmall person={p}/>
+                    <button value={p.artist} onClick={handleClick}>delete</button>
+                </div>
+                ))
+            }
+            
         </div>
     );
 }
