@@ -100,7 +100,7 @@ function App() {
         <div className="App">
           <BrowserRouter>
             <NavBar logout={logout}/>
-            <div className="pt-5 Route" style={{ backgroundImage: `url(${background})`}}>
+            <div className="Route" >
               <RoutesAll signup={signup} login={login}/>
             </div>
           </BrowserRouter >

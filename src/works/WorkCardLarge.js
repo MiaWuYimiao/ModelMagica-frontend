@@ -11,7 +11,7 @@ function WorkCardLarge({work}) {
         height: "200px"
     };
     return (
-        <Link className="card small-12 medium-4 columns searchResultsImg"  to={`/works/${work.id}`}>
+        <Link className=" card small-12 medium-4 columns searchResultsImg"  to={`/works/${work.id}`}>
             <div className="row itemcontainer">
                 <div className="imagecontainer">
                     <div id={work.id} className="DivImgContainer" style={myStyle}></div>

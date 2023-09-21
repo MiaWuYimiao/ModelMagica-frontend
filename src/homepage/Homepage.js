@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./Homepage.css";
 import ModelmagicaApi from "../api/api"
+import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import CardContainerRow from "../common/CardContainerRow";
 import LoadingSpinner from "../common/LoadingSpinner";
@@ -24,14 +25,14 @@ function Homepage() {
 
   useEffect(() => {
       async function getWorks() {
-          let works = await ModelmagicaApi.getWorks();
-          //let works = worksData;
+          //let works = await ModelmagicaApi.getWorks();
+          let works = worksData;
           setWorks(works);
       }
       async function getPeople() {
         const data = {role: "Model"}
-        let people = await ModelmagicaApi.getPeople(data);
-        //let people = peopleData;
+        //let people = await ModelmagicaApi.getPeople(data);
+        let people = peopleData;
         setPeople(people);
     }
       getPeople();
@@ -46,32 +47,35 @@ function Homepage() {
 
   return (
       <div className="Homepage">
-        <div className="container text-center">
-          <div id="TrendingRow" className="fullWidth trending-section" >
+          <div id="TrendingRow" className="fullWidth section" >
             <div className="sb-container">
               <div className="sb-container-header">
                 <h2 className="sb-title"> Trending</h2>
-                <a>See all</a>
+                <Link to="/works">SEE ALL </Link>
               </div>
             </div>
-            {works.length?
-              <CardContainerRow items={{works}}/>
-              : <p className="lead">Sorry, no results were found!</p>
-            }
+            <div className="trendsliderContainter">
+              {works.length?
+                <CardContainerRow items={{works}}/>
+                : <p className="lead">Sorry, no results were found!</p>
+              }
+            </div>
+
           </div>
-          <div id="ModelsRow" className="fullWidth models-section" >
+          <div id="ModelsRow" className="fullWidth section" >
             <div className="sb-container">
               <div className="sb-container-header">
                 <h2 className="sb-title"> Models</h2>
-                <a>See all</a>
+                <Link to="/models">SEE ALL </Link>
               </div>
             </div>
-            {people.length?
-              <CardContainerRow items={{people}}/>
-              : <p className="lead">Sorry, no results were found!</p>
-            }
+            <div className="trendsliderContainter">
+              {people.length?
+                <CardContainerRow items={{people}}/>
+                : <p className="lead">Sorry, no results were found!</p>
+              }
+            </div>
           </div>
-        </div>
       </div>
   );
 }

@@ -1,6 +1,36 @@
 .Homepage {
   /* put around the vertical center of page */
-  height: calc(100vh - 150px);
+}
+
+.fullWidth {
+  max-width: 1600px;
+}
+
+.section {
+  position: relative;
+  padding-bottom: 35px;
+  height: 450px;
+  box-sizing: border-box;
   display: flex;
-  margin: 100px;
+  flex-direction: column;
+}
+
+.sb-container {
+ padding-left: 40px;
+ padding-right: 40px;
+ flex: 1;
+}
+
+.sb-container-header {
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.trendsliderContainter {
+  position: relative;
 }

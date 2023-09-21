@@ -6,6 +6,7 @@ import SearchResult from "../common/SearchResult";
 import WorkList from "../works/WorkList";
 import WorkDetail from "../works/WorkDetail";
 import UploadForm from "../works/UploadForm";
+import ModelList from "../people/ModelList";
 import PeopleList from "../people/PeopleList";
 import PersonDetail from "../people/PersonDetail";
 import ProfileForm from "../users/ProfileForm";
@@ -21,8 +22,8 @@ function RoutesAll({login, signup}) {
             <Route exact path="/search/:type" element={
                 <SearchResult />} 
             />
-            <Route exact path="/people" element={
-                <PeopleList />} 
+            <Route exact path="/models" element={
+                <ModelList />} 
             />
             <Route exact path="/works" element={
                 <WorkList />} 
