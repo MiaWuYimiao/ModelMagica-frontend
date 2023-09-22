@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./PersonCardSmall.css"
 
 function PersonCardSmall({person}) {
     let myStyle={
@@ -9,13 +11,17 @@ function PersonCardSmall({person}) {
     };
 
     return (
-        <div className="personCardSmall">
-            <div style={myStyle}></div>
-            <div>
-                <h4>{person.artist}</h4>
-                <h5>{person.role}</h5>
+        <Link to={`/people/${person.fullname}`}>
+            <div className="personCardSmall">
+                <div>
+                    <img src={person.profileImgUrl} alt="profile" className="ui small circular centered image"/>
+                </div>
+                <div>
+                    <div>{person.artist}</div>
+                    <div className="listSubtitle-text">{person.role}</div>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

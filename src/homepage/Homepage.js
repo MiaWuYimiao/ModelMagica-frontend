@@ -25,14 +25,14 @@ function Homepage() {
 
   useEffect(() => {
       async function getWorks() {
-          //let works = await ModelmagicaApi.getWorks();
-          let works = worksData;
+          let works = await ModelmagicaApi.getWorks();
+          //let works = worksData;
           setWorks(works);
       }
       async function getPeople() {
         const data = {role: "Model"}
-        //let people = await ModelmagicaApi.getPeople(data);
-        let people = peopleData;
+        let people = await ModelmagicaApi.getPeople(data);
+        //let people = peopleData;
         setPeople(people);
     }
       getPeople();

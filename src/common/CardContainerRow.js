@@ -6,13 +6,10 @@ function CardContainerRow({ items }) {
     const category = Object.keys(items)[0];
     const Items = Object.values(items)[0];
 
-    console.log("category: ", category);
-    console.log("Items: ", Items);
-
     function workcards() {
         return (
             <section>
-                {Items.map( item => ( <WorkCardLarge work={item}/>) )}
+                {Items.map( item => ( <WorkCardLarge key={item.id} work={item}/>) )}
             </section>
         )
     }
@@ -20,7 +17,7 @@ function CardContainerRow({ items }) {
     function peoplecards() {
         return (
             <section>
-                {Items.map( item => ( <PersonCardLarge person={item}/>) )}
+                {Items.map( item => ( <PersonCardLarge key={item.fullname} person={item}/>) )}
             </section>
         )
     }

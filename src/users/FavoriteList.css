@@ -1,0 +1,33 @@
+.favList {
+    width: 100%;
+}
+
+.columns {
+
+}
+
+.favList>div {
+    width:  100%;
+    margin: 0 auto 12px;
+}
+
+.listHeader {
+    margin-left: 20px;
+    text-align: left;
+    background-color: #f2f2f2;
+    max-width: none;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.listContainer {
+    max-width: 600px;
+}
+
+.favorite-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -3,13 +3,13 @@ import UserContext from "../auth/UserContext";
 import SearchContext from "../common/SearchContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { InputGroup, FormControl, Button, Dropdown } from 'react-bootstrap';
+import { CiSearch } from "react-icons/ci";
 import ModelmagicaApi from "../api/api";
 import './NavBar.css';
 
 function NavBar({logout}) {
     const { currentUser } = useContext(UserContext);
     const { setSearchResult } = useContext(SearchContext);
-    console.log(currentUser);
 
     const navigate = useNavigate();
 
@@ -28,7 +28,6 @@ function NavBar({logout}) {
         let people = await ModelmagicaApi.getPeople(data);
         setSearchResult(people);
         navigate('/search/people');
-        console.log(searchTerm);
     }
 
     // Handle the search from the dropdown boxes
@@ -88,7 +87,7 @@ function NavBar({logout}) {
                                 name="searchTerm"
                                 value={searchTerm}
                             />
-                            <Button onClick={handleSearchClick} variant="outline-secondary"><i className="fal fa-search"></i></Button>
+                            <Button onClick={handleSearchClick} variant="outline-secondary"><CiSearch /></Button>
                         </InputGroup>
                     </li>
                     <li className="nav-item me-4">

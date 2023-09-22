@@ -101,7 +101,7 @@ function PersonDetail() {
                     </div>
                     <div className="row workRow">
                         {person.works.length>0 ? 
-                            person.works.map(w => (<WorkCardSmall work={w}/>)) : null
+                            person.works.map(w => (<WorkCardSmall key={w.id} work={w}/>)) : null
                         }
                     </div>
                 </div>
@@ -118,7 +118,7 @@ function PersonDetail() {
                             <div className="related-people-head"><h4>Related People</h4></div>
                             <div className="related-people-list">
                                 {relatedPeople.length > 0?
-                                    relatedPeople.map(p => (<PersonCardSmall person={p}/>))
+                                    relatedPeople.map(p => (<PersonCardSmall key={p.fullname} person={p}/>))
                                     : null
                                 }
                             </div>

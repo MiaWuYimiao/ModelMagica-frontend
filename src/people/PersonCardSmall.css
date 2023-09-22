@@ -1,0 +1,47 @@
+.personCardSmall {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.personCardSmall>div {
+    padding-left: 12px;
+    text-align: left;
+}
+
+img {
+ vertical-align: middle;
+}
+
+.ui.small.image {
+    width: 150px;
+    height: 150px;
+    font-size: .92857143rem;
+}
+
+.ui.centered.image {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui.circular.image {
+    border-radius: 500rem;
+}
+
+.ui.circular.image {
+    overflow: hidden;
+}
+
+img.ui.image {
+    display: block;
+}
+
+.listSubtitle-text {
+    display: block;
+    text-align: left;
+    color: #999;
+    font-size: .9em;
+}

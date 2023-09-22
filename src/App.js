@@ -29,7 +29,6 @@ function App() {
           let res = await ModelmagicaApi.getCurrentUser(decodedToken.username);
           setCurrentUser(res);
           let resFav = await ModelmagicaApi.getFavorites(decodedToken.username);
-          console.log(resFav);
           setFavoriteArtists(oldArtist => (new Set(resFav.map(o => (o.artist)))));
           return {success: true};
         } catch(err) {
@@ -70,7 +69,6 @@ function App() {
   }
 
   function hasAddFavorite(artist) {
-    console.log("favArtists", favoriteArtists);
     return favoriteArtists.has(artist)
   }
 
@@ -87,7 +85,11 @@ function App() {
   async function deleteFavorite(artist) {
     try {
       ModelmagicaApi.deleteFavorite(currentUser.username, artist);
-      setFavoriteArtists(oldArtists => (new Set([...oldArtists]).delete(artist)));
+      setFavoriteArtists(oldArtists => {
+        oldArtists.delete(artist);
+        return oldArtists;
+      });
+      console.log("deleteFavorite: ", favoriteArtists);
       return {success: true};
     } catch(err) {
       return {success:false, err};
@@ -100,7 +102,7 @@ function App() {
         <div className="App">
           <BrowserRouter>
             <NavBar logout={logout}/>
-            <div className="Route" >
+            <div className="Route">
               <RoutesAll signup={signup} login={login}/>
             </div>
           </BrowserRouter >
