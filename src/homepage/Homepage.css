@@ -1,9 +1,9 @@
 .Homepage {
   /* put around the vertical center of page */
+  position: relative;
 }
 
 .fullWidth {
-  max-width: 1600px;
 }
 
 .section {
@@ -32,5 +32,10 @@
 }
 
 .trendsliderContainter {
-  position: relative;
+  height: 300px;
+}
+
+a {
+  text-decoration: none;
+  color:black;
 }

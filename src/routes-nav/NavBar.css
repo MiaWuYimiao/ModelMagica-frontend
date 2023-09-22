@@ -1,14 +1,23 @@
 .Navigation {
     background-color: white;
     border-bottom: 2px solid rgba(0, 0, 0, 0.125);
-
   }
 
-  .container-fluid {
-    align-items: center;
-  }
-  
-  .nav-link.active {
-    font-weight: bold;
-    color: black;
-  }
+.navbar-brand {
+  font-weight: bold;
+}
+
+.container-fluid {
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: black;
+}
+
+.navbar-nav {
+  align-items: center;
+}

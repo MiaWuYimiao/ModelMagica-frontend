@@ -3,7 +3,7 @@ import SearchContext from "./SearchContext";
 import WorkCardLarge from "../works/WorkCardLarge";
 import PersonCardLarge from "../people/PersonCardLarge";
 import { NavLink, useParams } from "react-router-dom";
-import { peopleData, worksData } from "../data";
+import { peopleData, worksData } from "../helper/data";
 import './searchResult.css';
 
 function SearchResult() {
@@ -18,17 +18,18 @@ function SearchResult() {
         )
     }
 
-    //let Items = peopleData;
-    let Items = searchResult;
-    console.log(Items);
-    console.log(type);
+    let Items = SearchResult;
 
     return (
-        <div className="SearchResult">
-            <div className="grid-container">
+        <div className="SearchList row">
+            <div className="SearchListContainer">
                 {
                     Items.map( item => 
-                        ( type==="works"? <WorkCardLarge work={item}/> : <PersonCardLarge person={item}/> ) 
+                        ( 
+                            <div className="medium-4 columns searchResultsImg">
+                                {type==="works"? <WorkCardLarge key={item.id} work={item}/> : <PersonCardLarge key={item.fullname} person={item}/> }
+                            </div>
+                        ) 
                     )
                 }
             </div>

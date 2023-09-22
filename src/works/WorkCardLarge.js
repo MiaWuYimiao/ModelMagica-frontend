@@ -8,20 +8,16 @@ function WorkCardLarge({work}) {
         backgroundImage: `url(${work.url})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
-        height: "200px"
     };
     return (
-        <Link className=" card small-12 medium-4 columns searchResultsImg"  to={`/works/${work.id}`}>
+        <Link to={`/works/${work.id}`}>
             <div className="row itemcontainer">
-                <div className="imagecontainer">
-                    <div id={work.id} className="DivImgContainer" style={myStyle}></div>
-                </div>
-                <hr></hr>
+                <div id={work.id} className="imagecontainer" style={myStyle}></div>
+                <hr/>
                 <div className="">
                     <h6 className="card-title">{work.client} </h6>
                     <p className="card-subtitle">{work.title}</p>
                 </div>
-
             </div>
         </Link>
     )

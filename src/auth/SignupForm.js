@@ -35,7 +35,7 @@ function SignupForm({signup}) {
     const {username, password, firstName, lastName, email } = signupForm;
     
     return (
-        <div className="Signup-form">
+        <div className="Signup-form mt-4">
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Sign Up</h3>
                 <div className="card">
@@ -98,7 +98,7 @@ function SignupForm({signup}) {
                                 : null
                             }
                             <div className="d-grid">
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-secondary">Submit</button>
                             </div>
                         </form>
                     </div>

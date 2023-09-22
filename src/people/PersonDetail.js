@@ -8,7 +8,7 @@ import WorkCardSmall from "../works/WorkCardSmall";
 import PersonCardSmall from "./PersonCardSmall";
 import { BsHeart, BsHeartFill, BsInstagram } from "react-icons/bs";
 import "./PersonDetail.css";
-import { peopleData } from "../data";
+import { peopleData } from "../helper/data";
 
 function PersonDetail() {
     const { fullname } = useParams();

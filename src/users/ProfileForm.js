@@ -46,7 +46,7 @@ function Profile() {
     }
     
     return (
-        <div className="Profile-form">
+        <div className="Profile-form mt-4">
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Profile</h3>
                 <div className="card">
@@ -105,7 +105,7 @@ function Profile() {
                                 : null
                             }
                             <div className="d-grid">
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" className="btn btn-secondary">Submit</button>
                             </div>
                         </form>
                     </div>

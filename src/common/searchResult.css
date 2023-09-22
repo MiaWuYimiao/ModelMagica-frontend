@@ -1,10 +1,27 @@
-.grid-container {
-    display: grid;
-    column-gap: 15px;
-    row-gap: 15px;
-    grid-template-columns: 200px 200px 200px;
-  }
+.SearchList {
+  max-width: 63.25em;
+  margin: auto;
+  padding-top:30px;
+  width: 100%;
+  height: 100%;
+}
 
-  .SearchResult {
-    margin-top: 30px;
-  }
+.SearchListContainer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.searchResultsImg {
+  height: 560px;
+  min-height: 560px;
+  padding: 3px!important;
+}
+
+.medium-4 {
+  width: 33.333333%;
+}
+
+.columns {
+  position: relative;
+}

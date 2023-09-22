@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import CardContainerRow from "../common/CardContainerRow";
 import LoadingSpinner from "../common/LoadingSpinner";
-import {worksData, peopleData} from "../data";
+import {worksData, peopleData} from "../helper/data";
 
 /** Homepage of site.
  *
@@ -25,14 +25,14 @@ function Homepage() {
 
   useEffect(() => {
       async function getWorks() {
-          let works = await ModelmagicaApi.getWorks();
-          //let works = worksData;
+          //let works = await ModelmagicaApi.getWorks();
+          let works = worksData;
           setWorks(works);
       }
       async function getPeople() {
         const data = {role: "Model"}
-        let people = await ModelmagicaApi.getPeople(data);
-        //let people = peopleData;
+        //let people = await ModelmagicaApi.getPeople(data);
+        let people = peopleData;
         setPeople(people);
     }
       getPeople();

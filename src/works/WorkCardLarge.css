@@ -1,32 +1,57 @@
-.searchResultsImg {
-    min-height:190px;
-    padding:3px
-}
-
-.medium-4 {
-    width: 33.3333333%
-}
-
-.columns {
-    position: relative;
-    float: left;
-}
-
-.itemcontainer {
-    border: 1px solid black;
-    padding: 12px;
-    /* overflow: hidden; */
-}
-
 .row {
     width: auto;
     margin: 0;
     max-width: none;
+    display: inline;
 }
 
-/* .imagecontainer {
-     overflow: hidden; 
-} */
+.itemcontainer {
+    border: 1px solid #999;
+    padding: 12px;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+}
+
+
+.imagecontainer {
+    padding: 0;
+    overflow: hidden; 
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+    width: 100%;
+    height: 60%;
+}
+
+.imagecontainer hr {
+    border: solid #ddd ;
+    border-width: 1px 0 0;
+    margin: 1.23rem 0 1.1875rem;
+    height: 0;
+}
+
+hr {
+    color:#999;
+    border-width: 1px 0 0;
+    height: 0;
+}
+
+.workcontent {
+    font-size: .8rem;
+}
+
+.card-title {
+    color: black;
+}
+
+.card-subtitle {
+    color: #999;
+}
+
+a {
+    text-decoration: none;
+}
 
 /* .noimage {
     background-color: #f1f1f1;

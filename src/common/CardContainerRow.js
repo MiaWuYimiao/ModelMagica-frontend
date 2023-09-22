@@ -1,6 +1,7 @@
 import React from "react";
 import WorkCardLarge from "../works/WorkCardLarge";
 import PersonCardLarge from "../people/PersonCardLarge";
+import "./CardContainerRow.css";
 
 function CardContainerRow({ items }) {
     const category = Object.keys(items)[0];
@@ -8,22 +9,18 @@ function CardContainerRow({ items }) {
 
     function workcards() {
         return (
-            <section>
-                {Items.map( item => ( <WorkCardLarge key={item.id} work={item}/>) )}
-            </section>
+            Items.slice(0,6).map( item => ( <WorkCardLarge key={item.id} work={item}/>) )
         )
     }
 
     function peoplecards() {
         return (
-            <section>
-                {Items.map( item => ( <PersonCardLarge key={item.fullname} person={item}/>) )}
-            </section>
+            Items.slice(0,6).map( item => ( <PersonCardLarge key={item.fullname} person={item}/>) )
         )
     }
 
     return (
-        <div className="CardContainerRow sliderContainer">
+        <div className="CardContainerRow">
             <div className="slickPre rowPre slickNav"><i className="fas fa-arrow-left"></i></div>
             <div className="row-slider">
                 <div className="sb-grid sb-grid--6">

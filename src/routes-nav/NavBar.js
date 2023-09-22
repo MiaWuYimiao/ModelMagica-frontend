@@ -4,6 +4,7 @@ import SearchContext from "../common/SearchContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { InputGroup, FormControl, Button, Dropdown } from 'react-bootstrap';
 import { CiSearch } from "react-icons/ci";
+import { SlGrid, SlHeart } from "react-icons/sl";
 import ModelmagicaApi from "../api/api";
 import './NavBar.css';
 
@@ -42,7 +43,7 @@ function NavBar({logout}) {
         return (
             <>
                 <li className="nav-item me-4">
-                    <NavLink className="nav-link" exact to="/favorites">Favorites</NavLink>
+                    <NavLink className="nav-link" exact to="/favorites"><SlHeart/>  Favorites</NavLink>
                 </li>
                 <li className="nav-item me-4">
                     <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
@@ -79,7 +80,7 @@ function NavBar({logout}) {
                 <NavLink className="navbar-brand" exact to="/">ModelMagica</NavLink>
                 <ul class="navbar-nav ms-auto">
                     <li className="nav-item me-4">
-                        <InputGroup className="mb-3">
+                        <InputGroup >
                             <FormControl 
                                 placeholder="Search by name or role" 
                                 type="text"
@@ -93,7 +94,7 @@ function NavBar({logout}) {
                     <li className="nav-item me-4">
                         <Dropdown onSelect={handleSelect}>
                             <Dropdown.Toggle variant="second" id="dropdown-basic">
-                                Updates
+                                <SlGrid />  Updates
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>

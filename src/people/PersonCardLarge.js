@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
+import { getDispName } from "../helper/conveter";
 import "./PersonCardLarge.css";
 
 function PersonCardLarge({person}) {
@@ -10,17 +11,19 @@ function PersonCardLarge({person}) {
         backgroundImage: `url(${person.profileImgUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
-        height: "200px"
     };
 
+    console.log("fullname",person.fullname)
+
+    let disName = getDispName(person.fullname);
+
     return (
-        <Link className="card small-12 medium-4 columns searchResultsImg"  to={`/people/${person.fullname}`}>
+        <Link to={`/people/${person.fullname}`}>
             <div className="row itemcontainer">
-                <div className="imagecontainer">
-                    <div id={person.fullname} className="DivImgContainer" style={myStyle}></div>
-                </div>
+                <div id={person.fullname} className="imagecontainer" style={myStyle}></div>
+                <hr/>
                 <div className="card-text">
-                    <h6>{person.fullname} </h6>
+                    <h6>{disName} </h6>
                 </div>
 
             </div>
