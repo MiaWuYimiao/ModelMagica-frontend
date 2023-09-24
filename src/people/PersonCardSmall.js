@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./PersonCardSmall.css"
+import {getDispName} from "../helper/conveter";
 
 function PersonCardSmall({person}) {
     let myStyle={
@@ -9,19 +10,23 @@ function PersonCardSmall({person}) {
         backgroundPosition: 'center center',
         height: "200px"
     };
+    let name = "";
+    if(person.fullname) {
+        name = person.fullname;
+    } else {
+        name = person.artist;
+    }
 
-    return (
-        <Link to={`/people/${person.fullname}`}>
-            <div className="personCardSmall">
-                <div>
-                    <img src={person.profileImgUrl} alt="profile" className="ui small circular centered image"/>
-                </div>
-                <div>
-                    <div>{person.artist}</div>
-                    <div className="listSubtitle-text">{person.role}</div>
-                </div>
+    return (   
+        <div className="personCardSmall">
+            <div className="person-small-card-image">
+                <img src={person.profileImgUrl} alt="profile" className="ui small circular centered image"/>
             </div>
-        </Link>
+            <div className="person-small-card-text">
+                <div><Link to={`/people/${name}`}>{getDispName(name)}</Link></div>
+                <div className="listSubtitle-text">{person.role}</div>
+            </div>
+        </div>
     );
 }
 

@@ -7,7 +7,7 @@ import "./FavoriteList.css";
 
 
 function FavoriteList() {
-    const { currentUser, deleteFavorite } = useContext(UserContext);
+    const { currentUser, deleteFavorite, favoriteArtists } = useContext(UserContext);
     //different from favoriteArtists state in App component
     //This state is array of artist object instead of a set of artist name
     const [favoriteArtistsObj, setFavoriteArtistsObj] = useState([]);
@@ -19,7 +19,7 @@ function FavoriteList() {
             setFavoriteArtistsObj(favorites);
         }
         getUserFavorites();
-    }, []);
+    }, [handleClick]);
 
     function handleClick(e) {
         console.log(e.target.value);
@@ -35,8 +35,12 @@ function FavoriteList() {
             {
                 favoriteArtistsObj.map((p,i) => (
                 <div className="favorite-card" key={i}>
-                    <PersonCardSmall person={p}/>
-                    <button value={p.artist} onClick={handleClick} className="btn"><RxCross2 /></button>
+                    <div className="favorite-card-left">
+                        <PersonCardSmall person={p}/>
+                    </div>
+                    <div className="favorite-card-right">
+                        <button value={p.artist} onClick={handleClick} className="btn"><RxCross2 /> </button>
+                    </div>
                 </div>
                 ))
             }

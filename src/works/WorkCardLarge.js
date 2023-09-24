@@ -14,7 +14,7 @@ function WorkCardLarge({work}) {
             <div className="row itemcontainer">
                 <div id={work.id} className="imagecontainer" style={myStyle}></div>
                 <hr/>
-                <div className="">
+                <div className="card-text">
                     <h6 className="card-title">{work.client} </h6>
                     <p className="card-subtitle">{work.title}</p>
                 </div>

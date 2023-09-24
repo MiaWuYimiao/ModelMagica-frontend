@@ -21,3 +21,15 @@
     width: 100%;
     height: 100%;
 }
+
+.sb-grid h6 {
+    font-size: .8rem;
+}
+
+.sb-grid p {
+    font-size: .7rem;
+}
+
+.sb-grid hr {
+    margin: 1rem 0 0.95rem;
+}

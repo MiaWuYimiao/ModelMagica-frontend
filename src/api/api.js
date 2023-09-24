@@ -89,6 +89,12 @@ class ModelmagicaApi {
     return res.image;
   }
 
+  /** Get crew of a image */
+  static async getCrew(imageId) {
+    let res = await this.request(`images/${imageId}/people`);
+    return res.crew;
+  }
+
   /** Add relation work_image */
 
   static async addWorkImage(workId, imageId) {

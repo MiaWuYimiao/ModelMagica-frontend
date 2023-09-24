@@ -7,6 +7,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import WorkCardSmall from "../works/WorkCardSmall";
 import PersonCardSmall from "./PersonCardSmall";
 import { BsHeart, BsHeartFill, BsInstagram } from "react-icons/bs";
+import { getDispName, getDispDate, nFormatter } from "../helper/conveter";
 import "./PersonDetail.css";
 import { peopleData } from "../helper/data";
 
@@ -26,7 +27,7 @@ function PersonDetail() {
             setPerson(person);
         }
         getPerson();
-    },[])
+    },[fullname])
 
     if(!person) return <LoadingSpinner />;
 
@@ -58,10 +59,17 @@ function PersonDetail() {
     
     return (
         <div className="personDetail">
-            <div className="row"><h3>{person.fullname}</h3></div>
+            <div className="row">
+                <div className="large-12 medium-12 small-12 columns" id="p-namediv">
+                    <h3>{getDispName(person.fullname)}</h3>
+                </div>
+            </div>
             <div className="row">
                 <div className="large-3 medium-5 small-12 columns">
-                    <div id="photo" className="text-center">
+                    <div id="model-left" className="text-center">
+                        <div id="photo" className="text-center">
+
+                        </div>
                         <img src={person.profileImgUrl}/>
                         <div className="photo-credit"></div>
                     </div>
@@ -72,28 +80,30 @@ function PersonDetail() {
                             </div>
                         </div>) : null
                     }
-                    <div className="p-leftindo">
+                    <div className="p-leftinfo">
                         <h4>Role</h4>
-                        <h5>{person.role}</h5>
+                        {
+                            person.role==="Model"?
+                            <Link to={"/models"}>{person.role} </Link>
+                            : <h5>{person.role}</h5>
+                        }
                     </div>
                 </div>
                 <div className="large-7 medium-7 small-12 columns" id="p-centerdiv">
-                    <div className="row" id="profileInfoBox">
-                        <div className="row">
-                            <div className="small-12 columns">
-                                <h4 className="bbottomline">Biography</h4>
-                            </div>
+                    <div className="row" id="profile-tab">
+                        <div className="small-12 columns">
+                            <h4 className="bbottomline">Biography</h4>
                         </div>
-                        <div className="row">
-                            <div className="small-12 columns" id="biodata">
-                                <div>Birth Date: {person.birthday} </div>
-                                <div>Nationality: {person.nationalities} </div>
-                            </div>
+                        <div className="small-12 columns" id="biodata">
+                            {person.birthday?
+                            <div>Birth Date: {getDispDate(person.birthday)} </div> : null
+                            }
+                            {person.nationalities?   
+                            <div>Nationality: {person.nationalities} </div> : null
+                            }
                         </div>
-                        <div className="row">
-                            <div className="small-12 columns" id="biotxt">
-                                <div>{person.biography} </div>
-                            </div>
+                        <div className="small-12 columns" id="biotxt">
+                            <div>{person.biography} </div>
                         </div>
                     </div>
                     <div className="row" id="updatesHeader">
@@ -110,7 +120,7 @@ function PersonDetail() {
                         <div id="socialLinks">
                             <h4>Social Media</h4>
                             {person.socialMedia? 
-                                <a href={person.socialMedia} aria-label="instagram"><BsInstagram /> {person.follower}</a> 
+                                <div><a href={person.socialMedia} aria-label="instagram" target="_blank"><BsInstagram /></a> {nFormatter(person.follower)} </div>
                                 : null
                             }
                         </div>
@@ -118,7 +128,7 @@ function PersonDetail() {
                             <div className="related-people-head"><h4>Related People</h4></div>
                             <div className="related-people-list">
                                 {relatedPeople.length > 0?
-                                    relatedPeople.map(p => (<PersonCardSmall key={p.fullname} person={p}/>))
+                                    relatedPeople.map(p => (<div className="relateCard"><PersonCardSmall key={p.fullname} person={p}/></div>))
                                     : null
                                 }
                             </div>

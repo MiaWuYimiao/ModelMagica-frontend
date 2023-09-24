@@ -30,4 +30,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 180px;
+}
+
+.favorite-card-left {
+    height: 100%;
+    width: 100%;
+}
+
+.favorite-card-right {
+    
+}
+
+button > * {
+    pointer-events: none;
 }

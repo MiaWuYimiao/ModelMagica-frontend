@@ -1,15 +1,23 @@
 .personCardSmall {
+    height: 100%;
     display: flex;
     align-items: center;
     margin-top: 8px;
-    justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #efefef;
 }
 
-.personCardSmall>div {
+
+.person-small-card-image {
+    height: 100%;
+    margin-right: 0;
+    aspect-ratio: 1;
+}
+
+.person-small-card-text {
     padding-left: 12px;
     text-align: left;
+    margin-right: auto;
 }
 
 img {
@@ -17,9 +25,11 @@ img {
 }
 
 .ui.small.image {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     font-size: .92857143rem;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .ui.centered.image {

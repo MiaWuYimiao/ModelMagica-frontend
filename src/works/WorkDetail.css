@@ -1,0 +1,156 @@
+.row {
+    max-width: 63.25em;
+    margin: 0 auto;
+    width: auto;
+    display: block;
+}
+
+.row.work-left {
+    margin: 20px 20px 0 0;
+}
+
+.row.work-right {
+    margin: 20px 0 0;
+}
+
+.mdcdb-font-size, .mdcdb-font-size li {
+    font-size: .85rem;
+    line-height: 1.2rem;
+}
+
+.large-4 {
+    width: 33.33333%;
+}
+
+.large-8 {
+    width: 66.66667%;
+}
+
+.work-left .panel {
+    border: 0;
+    margin-bottom: 10px;
+}
+.panel {
+    position: relative;
+    background-color: #f2f2f2;
+    padding: 1.25rem;
+    border-color: #d8d8d8;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.show-for-large-up {
+    display: inherit!important;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.workSliderThumbs {
+    max-height: 113px;
+    overflow: hidden;
+}
+
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.small-2 {
+    width: 16.66667%;
+}
+
+.slick-slide img {
+    display: block;
+}
+.workSlider img {
+    margin: auto;
+    min-height: 100px;
+    width: 100%;
+}
+
+.workSlider .columns .panel {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    text-align: left;
+}
+
+.img{
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+.img {
+    overflow: clip;
+    overflow-clip-margin: content-box;
+}
+
+.workSlider .columns .panel span {
+    padding: 1.25rem;
+    display: block;
+}
+
+.workSlider .columns .panel hr {
+    margin: 0;
+}
+
+a {
+    color: #827430;
+    text-decoration: none;
+    line-height: inherit;
+}
+
+.workSliderThumbs {
+    max-height: 113px;
+    overflow: hidden;
+}
+
+.workSliderThumbs .th {
+    margin: 0 0 1rem;
+    position: relative;
+    max-width: 88px;
+}
+
+.workSliderThumbs .th img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    align-items: top;
+}
+
+.th {
+    line-height: 0;
+    display: inline-block;
+    border: 4px solid #fff;
+    max-width: 100%;
+    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,.2);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.2);
+    -webkit-transition: all 200ms ease-out;
+    -moz-transition: all 200ms ease-out;
+    transition: all 200ms ease-out;
+
+}
+
+.workSliderThumbs .columns {
+    text-align: center;
+    padding: 1px;
+}
+
+.current-img {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+li {
+    list-style-type: none;
+}
+
+.hidden { display:none; }

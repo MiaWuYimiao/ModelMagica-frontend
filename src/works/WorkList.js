@@ -1,13 +1,25 @@
-import React from "react";
-import {worksData, peopleData} from "../helper/data";
+import React, { useState, useEffect } from "react";
+import {worksData} from "../helper/data";
 import WorkCardLarge from "./WorkCardLarge";
+import ModelmagicaApi from "../api/api"
 
 function WorkList() {
+    const [works, setWorks] = useState([]);
+  
+    useEffect(() => {
+        async function getWorks() {
+            let works = await ModelmagicaApi.getWorks();
+            //let works = worksData;
+            setWorks(works);
+        }
+        getWorks();
+    },[])
+
     return (
         <div className="SearchList row">
             <div className="SearchListContainer">
                 {                    
-                    worksData.map(work => (
+                    works.map(work => (
                         <div className="medium-4 columns searchResultsImg">
                             <WorkCardLarge key={work.id} work={work}/>
                         </div>

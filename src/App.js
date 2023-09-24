@@ -97,7 +97,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite, deleteFavorite}}>
+    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite, deleteFavorite, favoriteArtists}}>
       <SearchContext.Provider value={{searchResult, setSearchResult}}>
         <div className="App">
           <BrowserRouter>

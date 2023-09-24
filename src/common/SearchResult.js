@@ -18,13 +18,11 @@ function SearchResult() {
         )
     }
 
-    let Items = SearchResult;
-
     return (
         <div className="SearchList row">
             <div className="SearchListContainer">
                 {
-                    Items.map( item => 
+                    searchResult.map( item => 
                         ( 
                             <div className="medium-4 columns searchResultsImg">
                                 {type==="works"? <WorkCardLarge key={item.id} work={item}/> : <PersonCardLarge key={item.fullname} person={item}/> }
