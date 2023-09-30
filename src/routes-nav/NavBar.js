@@ -28,6 +28,7 @@ function NavBar({logout}) {
         let data = {fullname: term, role:term};
         let people = await ModelmagicaApi.getPeople(data);
         setSearchResult(people);
+        setSearchTerm("");
         navigate('/search/people');
     }
 
@@ -43,18 +44,18 @@ function NavBar({logout}) {
         return (
             <>
                 <li className="nav-item me-4">
-                    <NavLink className="nav-link" exact to="/favorites"><SlHeart/>  Favorites</NavLink>
+                    <NavLink className="nav-link" exact="true" to="/favorites"><SlHeart/>  Favorites</NavLink>
                 </li>
                 <li className="nav-item me-4">
-                    <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
+                    <NavLink className="nav-link" exact="true" to="/profile">Profile</NavLink>
                 </li>
                 {currentUser.isAdmin?
                     (<li className="nav-item me-4">
-                        <NavLink className="nav-link" exact to="/upload">Upload</NavLink>
+                        <NavLink className="nav-link" exact="true" to="/upload">Upload</NavLink>
                     </li>) : null
                 }
                 <li className="nav-item me-4">
-                    <NavLink className="nav-link" onClick={logout} exact to="/">Log out {currentUser.username}</NavLink>
+                    <NavLink className="nav-link" onClick={logout} exact="true" to="/">Log out {currentUser.username}</NavLink>
                 </li>
             </>
         )
@@ -64,10 +65,10 @@ function NavBar({logout}) {
         return (
             <>
                 <li className="nav-item me-4">
-                    <NavLink className="nav-link" exact to="/login">Login</NavLink>
+                    <NavLink className="nav-link" exact="true" to="/login">Login</NavLink>
                 </li>
                 <li className="nav-item me-4">
-                    <NavLink className="nav-link" exact to="/signup">Sign Up</NavLink>
+                    <NavLink className="nav-link" exact="true" to="/signup">Sign Up</NavLink>
                 </li>
             </>
         )
@@ -77,8 +78,8 @@ function NavBar({logout}) {
     return (
         <nav className="Navigation navbar navbar-expand-md">
             <div className="container-fluid">
-                <NavLink className="navbar-brand" exact to="/">ModelMagica</NavLink>
-                <ul class="navbar-nav ms-auto">
+                <NavLink className="navbar-brand" exact="true" to="/">ModelMagica</NavLink>
+                <ul className="navbar-nav ms-auto">
                     <li className="nav-item me-4">
                         <InputGroup >
                             <FormControl 
@@ -98,12 +99,11 @@ function NavBar({logout}) {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item eventKey="Ediorial">Ediorial</Dropdown.Item>
+                                <Dropdown.Item eventKey="Editorial">Editorial</Dropdown.Item>
                                 <Dropdown.Item eventKey="Shows">Shows</Dropdown.Item>
                                 <Dropdown.Item eventKey="Magazine Covers">Magazine Covers</Dropdown.Item>
                                 <Dropdown.Item eventKey="Advertising">Advertising</Dropdown.Item>
                                 <Dropdown.Item eventKey="Social Media">Social Media</Dropdown.Item>
-                                <Dropdown.Item eventKey="Lookbooks/Catalogs">Lookbooks/Catalogs</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>

@@ -8,8 +8,6 @@ import {getDispName} from "../helper/conveter"
 function ImageDetail({image}) {
     const [crew, setCrew] = useState("");
 
-    console.log(image);
-
     useEffect(() => {
         async function getCrew() {
             let crew = await ModelmagicaApi.getCrew(image.id);

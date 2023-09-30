@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { peopleData} from "../helper/data";
 import PersonCardLarge from "./PersonCardLarge";
 import ModelmagicaApi from "../api/api"
 

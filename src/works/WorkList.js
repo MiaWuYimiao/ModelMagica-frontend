@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {worksData} from "../helper/data";
 import WorkCardLarge from "./WorkCardLarge";
 import ModelmagicaApi from "../api/api"
 
@@ -20,7 +19,7 @@ function WorkList() {
             <div className="SearchListContainer">
                 {                    
                     works.map(work => (
-                        <div className="medium-4 columns searchResultsImg">
+                        <div className="medium-4 columns searchResultsImg" key={work.id}>
                             <WorkCardLarge key={work.id} work={work}/>
                         </div>
                     ))

@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import CardContainerRow from "../common/CardContainerRow";
 import LoadingSpinner from "../common/LoadingSpinner";
-import {worksData, peopleData} from "../helper/data";
 
 /** Homepage of site.
  *

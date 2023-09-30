@@ -9,7 +9,6 @@ import PersonCardSmall from "./PersonCardSmall";
 import { BsHeart, BsHeartFill, BsInstagram } from "react-icons/bs";
 import { getDispName, getDispDate, nFormatter } from "../helper/conveter";
 import "./PersonDetail.css";
-import { peopleData } from "../helper/data";
 
 function PersonDetail() {
     const { fullname } = useParams();
@@ -128,7 +127,7 @@ function PersonDetail() {
                             <div className="related-people-head"><h4>Related People</h4></div>
                             <div className="related-people-list">
                                 {relatedPeople.length > 0?
-                                    relatedPeople.map(p => (<div className="relateCard"><PersonCardSmall key={p.fullname} person={p}/></div>))
+                                    relatedPeople.map(p => (<div className="relateCard" key={p.fullname} ><PersonCardSmall key={p.fullname} person={p}/></div>))
                                     : null
                                 }
                             </div>

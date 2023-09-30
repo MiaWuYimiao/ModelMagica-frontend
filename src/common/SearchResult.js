@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import SearchContext from "./SearchContext";
 import WorkCardLarge from "../works/WorkCardLarge";
 import PersonCardLarge from "../people/PersonCardLarge";
-import { NavLink, useParams } from "react-router-dom";
-import { peopleData, worksData } from "../helper/data";
+import { useParams } from "react-router-dom";
 import './searchResult.css';
 
 function SearchResult() {
@@ -12,7 +11,7 @@ function SearchResult() {
 
     if(searchResult.length === 0) {
         return (
-            <div>
+            <div className="mt-5">
                 <h4>No result found!</h4>
             </div>
         )

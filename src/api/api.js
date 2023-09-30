@@ -98,13 +98,13 @@ class ModelmagicaApi {
   /** Add relation work_image */
 
   static async addWorkImage(workId, imageId) {
-    await this.request(`works/${workId}/images/${imageId}`, {}, "post");
+    await this.request(`images/${imageId}/works/${workId}`, {}, "post");
   }
 
   /** Add relation people_image */
 
   static async addPeopleImage(fullname, imageId) {
-    await this.request(`people/${fullname}/images/${imageId}`, {}, "post");
+    await this.request(`images/${imageId}/people/${fullname}`, {}, "post");
   }
 
   /** Add favorite artist(people) */

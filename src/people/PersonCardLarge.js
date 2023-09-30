@@ -10,10 +10,8 @@ function PersonCardLarge({person}) {
     let myStyle={
         backgroundImage: `url(${person.profileImgUrl})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',
+        backgroundPosition: 'top center',
     };
-
-    console.log("fullname",person.fullname)
 
     let disName = getDispName(person.fullname);
 

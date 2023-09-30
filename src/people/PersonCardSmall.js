@@ -7,7 +7,7 @@ function PersonCardSmall({person}) {
     let myStyle={
         backgroundImage: `url(${person.profileImgUrl})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',
+        backgroundPosition: 'top center',
         height: "200px"
     };
     let name = "";

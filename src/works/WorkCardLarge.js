@@ -7,7 +7,7 @@ function WorkCardLarge({work}) {
     let myStyle={
         backgroundImage: `url(${work.url})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center center',
+        backgroundPosition: 'top center',
     };
     return (
         <Link to={`/works/${work.id}`}>

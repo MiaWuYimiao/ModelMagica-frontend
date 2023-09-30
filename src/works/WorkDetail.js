@@ -18,6 +18,10 @@ function WorkDetail() {
     //   where images is [{ id, url }, ...] and crew is [{fullname, role}, ...]
     //   currentImage is {id, url}
 
+    const myStyle = {
+        backgroundPosition: 'top center',
+    };
+
     useEffect(() => {
         async function getWork() {
             let work = await ModelmagicaApi.getWork(id);
@@ -44,7 +48,7 @@ function WorkDetail() {
                             <h3>{work.client}</h3>
                             <h5>{work.title}</h5>
                             Source: 
-                            <a href={work.source}> work.source</a>
+                            <a href={work.source} target="_blank"> work.source</a>
                             <p> Published: {getDispDate(work.publishTime)}</p>
                         </div>
                         <div id="crew-box" className="show-for-large-up">
@@ -75,7 +79,7 @@ function WorkDetail() {
                                         {
                                             work.images.map((i, index) => 
                                                 (<div className="small-2 columns">
-                                                    <div className={currentImage===i? "th current-img" : "th"} id={i.id}>
+                                                    <div className={currentImage===i? "th current-img" : "th"} id={i.id} style={myStyle}>
                                                         <a>
                                                             <img src={i.url} alt={index} onClick={handleClick}></img>
                                                         </a>
