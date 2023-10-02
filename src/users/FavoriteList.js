@@ -7,7 +7,7 @@ import "./FavoriteList.css";
 
 
 function FavoriteList() {
-    const { currentUser, deleteFavorite, favoriteArtists } = useContext(UserContext);
+    const { currentUser, deleteFavorite } = useContext(UserContext);
     //different from favoriteArtists state in App component
     //This state is array of artist object instead of a set of artist name
     const [favoriteArtistsObj, setFavoriteArtistsObj] = useState([]);

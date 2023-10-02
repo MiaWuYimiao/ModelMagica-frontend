@@ -8,13 +8,11 @@ import UserContext from './auth/UserContext';
 import SearchContext from './common/SearchContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import ModelmagicaApi from "./api/api";
-import background from "./img/image.png";
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "modelmagica-token";
 
 function App() {
-  const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
@@ -97,7 +95,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite, deleteFavorite, favoriteArtists}}>
+    <UserContext.Provider value={{currentUser, setCurrentUser, hasAddFavorite, addFavorite, deleteFavorite }}>
       <SearchContext.Provider value={{searchResult, setSearchResult}}>
         <div className="App">
           <BrowserRouter>
