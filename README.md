@@ -120,39 +120,39 @@ For every image added, you must assign credits to the respective contributors. C
 
 ![database schema](/src/img/ModelMagica_DB_relationship.png)
 
-## APIs
+## API
 
-### BASE_BACKEND_URL  
+### BASE_BACKEND_URI  
 
 [https://modelmagica-10360e007fce.herokuapp.com](https://modelmagica-10360e007fce.herokuapp.com)
 
 1. **Image**  
 	Create a new image. { url } => { id, url }
 
-	`POST   /images`      
+	`POST  /images`      
 
 	Get credits of a image.  [ id ] => { crew : [ { full name, role }, … ] }
 
-	`GET      /images/:id/people` 
+	`GET   /images/:id/people` 
 
-	Add image-work relationship.  [ id, worked ] => { "addedWorkImg": [ workId, imageId ] }
+	Add image-work relationship.  [ id, workid ] => { "addedWorkImg": [ workId, imageId ] }
 
-	`POST   /images/:id/works/:workid`
+	`POST  /images/:id/works/:workid`
 	
 	Add image-people relationship.  [ id, artist ] => { "addedPplImg": [ artist, imageId ] }
 
-	`POST   /images/:id/people/:artist`
+	`POST  /images/:id/people/:artist`
 	
 2. **People**  
 	Create a new person. { people } => { people }, people should be { fullname, profileImg,role, biography, birthday, nationalities, socialMedia, follower }
 
-	`POST   /people` 
+	`POST  /people` 
 
 	Get all people. Can provide search filter in query as fullname or role.  => { people:[ { fullname, profileImgUrl }, … ] }. Can provide search filter in query: fullname, role.
 
 	`GET   /people` 
 
-	Get the person by name. [ fullname ] => { person }. Returns { fullname, profileImgUrl, role, biography, birthday, nationalities, socialMedia, follower, works, relatedPeople }, 		where works is [ { id, coverImgUrl, title, publishTime, client, type } … ], where relatedPeople is [ { fullname, role, profileImgUrl } ...]
+	Get the person by name. [ fullname ] => { person }. Returns { fullname, profileImgUrl, role, biography, birthday, nationalities, socialMedia, follower, works, relatedPeople }, where works is [ { id, coverImgUrl, title, publishTime, client, type } … ], where relatedPeople is [ { fullname, role, profileImgUrl } ...]
 
 	`GET   /people/:fullname`
 
@@ -166,9 +166,9 @@ For every image added, you must assign credits to the respective contributors. C
 	`POST  /works`
 
 	Get all works.  => { works: [ { id, title, client, type, source, publishTime, url }, ...] }
-	Can provide search filter in query: type client.
+	Can provide search filter in query: type, client.
 
-    `GET   /works`
+    `GET  /works`
 
 	Get the work by work id. [ id ] => { work }, work is { id, title, client, type, source, publishTime, images, crew }, where images is [ { id, url }, … ] and crew is [ { fullname, role }, … ]
 
@@ -180,20 +180,20 @@ For every image added, you must assign credits to the respective contributors. C
 	
 	Delete the work by work id. [ id ]  =>  { deleted: id }
 
-	`DELETE   /works/:id`
+	`DELETE  /works/:id`
 
 4. **Users**  
 	Adds a new user.  { user } => { user, token } This is not the registration endpoint --- instead, this is only for admin users to add new users. The new user being added can be an admin. This returns the newly created user and an authentication token for them: {user: { username, firstName, lastName, email, isAdmin }, token }
 
-	`POST   /users`
+	`POST  /users`
 
 	Get list of all users. => { users: [ { username, firstName, lastName, email }, ... ] }
 
-	`GET     /users`
+	`GET  /users`
 
 	Get the user by name. [ username ] => { user }. Returns { username, firstName, lastName, isAdmin, jobs }, where jobs is { id, title, companyHandle, companyName, state }
 
-	`GET   /users/:username`
+	`GET  /users/:username`
 
 	Update the user by name. [ username ] { user } => { user }. Data can include: { firstName, lastName, password, email }. Returns { username, firstName, lastName, email, isAdmin }
 
@@ -201,7 +201,7 @@ For every image added, you must assign credits to the respective contributors. C
 
 	Delete the user by username. [ username ]  =>  { deleted: username }
 
-	`DELETE   /users/:username`
+	`DELETE  /users/:username`
 
 	Add a favorite. [ username ]/people/[ artist ]  => { "added": artist }
 
